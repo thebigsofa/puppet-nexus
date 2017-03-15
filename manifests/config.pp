@@ -46,8 +46,11 @@ class nexus::config(
 
   # Nexus >=3.x do no necesarily have a properties file in place to
   # modify. Make sure that there is at least a minmal file there
+  file { $nexus_work_dir:
+    ensure => directory,
+  }
   file { $nexus_properties_file:
-    ensure =>  present,
+    ensure => present,
   }
 
   file_line{ 'nexus-application-host':
